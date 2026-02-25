@@ -1,0 +1,3196 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+<meta charset="utf-8">
+<title>Parishrama </title>
+<!-- Stylesheets -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" id="jssDefault" href="css/custom/theme-2.css"/>
+
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href="css/responsive.css" rel="stylesheet">
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="images/header/logo1.png" sizes="32x32">
+<link rel="icon" type="image/png" href="images/header/logo1.png" sizes="16x16">
+
+</head>
+
+<body class="home layout_changer">
+
+
+<div class="page-wrapper body_wrapper">
+ 	
+    
+ 	
+<!-- Main Header / Header Style One-->
+   
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<style>
+/*
+  Shared responsive fixes for Parishramaa
+  - Loaded via PHP include from php_include/header.php, so it works from any subfolder.
+  - Keep selectors conservative; most overrides apply only under common breakpoints.
+*/
+
+/* ===============
+   Global helpers
+   =============== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+embed,
+object {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe {
+  max-width: 100%;
+}
+
+/* Prevent long words/URLs from causing horizontal scroll */
+body,
+.content-box,
+.inner-box,
+.service-card,
+.info-card {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Improve tap behavior on mobile without changing visuals */
+a,
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* ===============
+   Mobile: common section spacing + typography
+   (applies to custom service subpages that use .hero/.section/etc.)
+   =============== */
+@media (max-width: 991px) {
+  .hero {
+    padding: 90px 0 60px;
+  }
+
+  .hero h1 {
+    font-size: clamp(26px, 5.5vw, 40px);
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: clamp(14px, 2.8vw, 18px);
+  }
+
+  .section {
+    padding: 55px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  /* iOS Safari performance: avoid fixed backgrounds */
+  .page-title,
+  .page-title-section {
+    background-attachment: scroll !important;
+  }
+
+  .page-title {
+    padding: 70px 0;
+  }
+
+  .page-title h1,
+  .page-title-section h1 {
+    font-size: clamp(24px, 7vw, 38px);
+    line-height: 1.2;
+    letter-spacing: 1px;
+  }
+
+  .page-title-section p {
+    font-size: 15px;
+  }
+
+  .section {
+    padding: 45px 0;
+  }
+
+  .content-box {
+    padding: 24px !important;
+  }
+
+  /* Service cards/rows used across nav/* pages */
+  .services-outer .row {
+    display: block !important;
+  }
+
+  .services-outer .row > [class*="col-"] {
+    float: none !important;
+    width: 100% !important;
+  }
+
+  /* If a page uses stats row in hero */
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* Forms/cards */
+  .hero-form-card,
+  .content-box,
+  .inner-box,
+  .service-card,
+  .info-card {
+    border-radius: 12px;
+  }
+}
+
+/* ===============
+   Contact page-specific tweaks
+   =============== */
+@media (max-width: 767px) {
+  .form-body {
+    padding: 24px 18px !important;
+  }
+
+  .page-title-section {
+    padding: 75px 0 50px;
+  }
+
+  .map-container-box {
+    height: 320px !important;
+  }
+
+  .map-overlay-card {
+    left: 14px !important;
+    bottom: 14px !important;
+    max-width: calc(100% - 28px);
+  }
+}
+
+@media (min-width: 768px) {
+  .map-container-box {
+    height: min(450px, 60vh);
+  }
+}
+
+/* ===============
+   Services listing page tweaks
+   =============== */
+@media (max-width: 767px) {
+  .services-section-premium {
+    padding: 60px 0;
+  }
+
+  .sec-title h2 {
+    font-size: clamp(22px, 6vw, 32px);
+  }
+}
+
+/* ===============
+   Index hero (Revolution Slider) - responsive text + full image on small screens
+
+   Note:
+   - “Full screen” + “show full image” means we use `contain` so the whole image fits.
+   - This may introduce letterboxing (empty space), but the image will not be cropped.
+   =============== */
+
+@media (max-width: 991px) {
+  /* Make the hero feel full-screen on tablets/phones */
+  .rev_slider_wrapper {
+    min-height: 75vh;
+  }
+
+  /* Many Revolution Slider layouts use these elements for sizing */
+  .rev_slider_wrapper,
+  .rev_slider_wrapper .rev_slider,
+  .rev_slider_wrapper .tp-fullwidth-forcer,
+  .rev_slider_wrapper .tp-fullwidth-forcer2 {
+    height: 75vh !important;
+  }
+
+  /*
+    IMPORTANT:
+    Your css/responsive.css forces `.tp-parallax-wrap { top: 130px!important; }` under 991px,
+    which breaks Revolution Slider positioning on mobile.
+  */
+  .tp-parallax-wrap {
+    top: 0 !important;
+  }
+
+  /* Keep caption content inside the viewport (without changing alignment style) */
+  .rev_slider_wrapper .tp-caption {
+    max-width: calc(100% - 24px) !important;
+    left: 12px !important;
+    right: 12px !important;
+  }
+
+  /* Softer typography on medium screens */
+  .slide-content-box h1 {
+    font-size: clamp(30px, 4.6vw, 44px) !important;
+    line-height: 1.12 !important;
+  }
+
+  .slide-content-box p {
+    font-size: 15px !important;
+    line-height: 23px !important;
+    max-width: 640px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* True “fullscreen” feel on phones */
+  .rev_slider_wrapper {
+    min-height: 100vh;
+  }
+
+  .rev_slider_wrapper,
+  .rev_slider_wrapper .rev_slider,
+  .rev_slider_wrapper .tp-fullwidth-forcer,
+  .rev_slider_wrapper .tp-fullwidth-forcer2 {
+    height: 100vh !important;
+  }
+
+  /* Keep image fullscreen. */
+  .rev_slider_wrapper {
+    background: #000;
+  }
+
+  .rev_slider_wrapper .tp-bgimg {
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+
+  /* Further tighten text so it doesn't overflow */
+  .slide-content-box h1 {
+    font-size: clamp(22px, 7vw, 32px) !important;
+    line-height: 1.15 !important;
+  }
+
+  .slide-content-box p {
+    font-size: 13px !important;
+    line-height: 21px !important;
+    max-width: 92vw;
+  }
+}
+</style>
+
+<style>
+/* =========================
+   HEADER STYLES
+========================= */
+.header-lower {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    z-index: 1000;
+}
+
+.header-lower .auto-container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+.header-lower .outer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-row {
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-left: 12px;
+    border: 1px solid #eee;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #333;
+    margin: 3px 0;
+}
+
+.submenu-toggle {
+    display: none;
+}
+
+/* LOGO */
+.logo-box {
+    flex: 0 0 auto;
+    padding: 10px 0;
+}
+
+.logo-wrap {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 52px;
+    width: auto;
+}
+
+/* NAVIGATION */
+.nav-outer {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main-menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu > ul > li {
+    position: relative;
+    display: inline-block;
+}
+
+.main-menu > ul > li > a {
+    display: block;
+    padding: 25px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.main-menu > ul > li:hover > a {
+    color: #f57c00;
+}
+
+/* DROPDOWN (GRID SYSTEM) */
+.main-menu ul li ul {
+    display: grid;
+    grid-auto-flow: row;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-top: 3px solid #f57c00;
+    padding: 10px;
+    z-index: 9999;
+    gap: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s ease-in-out;
+}
+
+.main-menu ul li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.main-menu ul li ul li {
+    display: block;
+    width: 100%;
+}
+
+.main-menu ul li ul li a {
+    display: block;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: #555;
+    font-weight: 400;
+    border-radius: 3px;
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+}
+
+.main-menu ul li ul li a:hover {
+    background: #fff3e0;
+    color: #f57c00;
+    padding-left: 15px;
+}
+
+/* COLUMNS */
+.main-menu ul li ul.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+    width: 420px;
+}
+
+.main-menu ul li ul.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+    width: 600px;
+}
+
+/* ALIGN RIGHT (Prevent Overflow) */
+.main-menu > ul > li:nth-last-child(1) ul,
+.main-menu > ul > li:nth-last-child(2) ul,
+.main-menu > ul > li:nth-last-child(3) ul {
+    left: auto;
+    right: 0;
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+    .header-lower .outer-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .header-row {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    .nav-outer {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Collapsed by default; toggled via .main-header.is-nav-open */
+    .main-menu > ul {
+        display: none;
+        width: 100%;
+    }
+
+    .main-header.is-nav-open .main-menu > ul {
+        display: block;
+    }
+
+    .main-menu > ul > li {
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+        position: relative;
+    }
+
+    .main-menu > ul > li > a {
+        padding: 14px 40px 14px 0;
+    }
+
+    .submenu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 40px;
+        height: 100%;
+        background: transparent;
+        border: 0;
+        color: #333;
+    }
+
+    .main-menu ul li ul,
+    .main-menu ul li ul.cols-2,
+    .main-menu ul li ul.cols-3 {
+        position: static;
+        display: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        width: 100%;
+        box-shadow: none;
+        border-top: none;
+        padding: 0 0 15px 15px;
+        grid-template-columns: 1fr;
+    }
+
+    .main-menu > ul > li.open > ul {
+        display: block;
+    }
+}
+</style>
+
+<header class="main-header">
+    <div class="header-lower">
+        <div class="auto-container">
+            <div class="outer-container">
+
+                <div class="header-row">
+                    <!-- LOGO -->
+                    <div class="logo-box">
+                        <a href="../../index.php" class="logo-wrap">
+                            <!-- NOTICE: Using $root before the image path -->
+                            <img src="../../images/header/logo.png" alt="Parishrama Logo" class="logo-img">
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="menu-toggle" type="button"  >
+                        <img src="../../image/manu.png">
+                    </button>
+                </div>
+
+                <!-- NAVIGATION -->
+                <div class="nav-outer">
+                    <nav class="main-menu">
+                        <ul>
+                            
+                            <!-- COMPLIANCE -->
+                            <li>
+                                <a href="../../nav/compliance/compliance.php">Compliance <i class="fa fa-angle-down"></i></a>
+                                <ul class="cols-2">
+								<li><a href="../../nav/compliance/hr_payroll.php">HR & Payroll</a></li>
+                                    <li><a href="../../nav/compliance/pf_return.php">PF Return Filing</a></li>
+                                    <li><a href="../../nav/compliance/esi_return.php">ESI Return Filing</a></li>
+                                    <li><a href="../../nav/compliance/prof_tax.php">Professional Tax Return Filing</a></li>
+									  <li><a href="../../nav/compliance/business_plan.php">Business Plan</a></li>
+                                    <li><a href="../../nav/compliance/fssai_renewal.php">FSSAI Renewal</a></li>
+                                    <li><a href="../../nav/compliance/fssai_return.php">FSSAI Return Filing</a></li>                                                                    
+                                    <li><a href="../../nav/compliance/partnership_compliance.php">Partnership Compliance</a></li>
+                                    <li><a href="../../nav/compliance/proprietorship_compliance.php">Proprietorship Compliance</a></li>                                  
+                                    
+                                </ul>
+                            </li>
+							
+							      <!-- REGISTRATION -->
+                            <li>
+                                <a href="../../nav/registration/registration.php">Registration <i class="fa fa-angle-down"></i></a>
+                                <ul class="cols-3">
+                                    <li><a href="../../nav/registration/startup_india.php">Startup India</a></li>
+                                    <li><a href="../../nav/registration/trade_license.php">Trade License</a></li>
+                                    <li><a href="../../nav/registration/fssai_registration.php">FSSAI Registration</a></li>
+                                    <li><a href="../../nav/registration/fssai_license.php">FSSAI License</a></li>
+                                    <li><a href="../../nav/registration/icegate.php">ICEGATE Registration</a></li>
+                                    <li><a href="../../nav/registration/iec_code.php">Import Export Code</a></li>                                     
+                                    <li><a href="../../nav/registration/iso_registration.php">ISO Registration</a></li>
+                                    <li><a href="../../nav/registration/pf_registration.php">PF Registration</a></li>
+                                    <li><a href="../../nav/registration/esi_registration.php">ESI Registration</a></li>                                   
+                                    <li><a href="../../nav/registration/pt_registration.php">Professional Tax Registration</a></li>
+                                    <li><a href="../../nav/registration/12a_80g.php">12A and 80G Registration</a></li>
+                                    <li><a href="../../nav/registration/12a.php">12A Registration</a></li>
+                                    <li><a href="../../nav/registration/80g.php">80G Registration</a></li>
+                                    <li><a href="../../nav/registration/barcode.php">Barcode Registration</a></li>
+                                    <li><a href="../../nav/registration/dsc.php">Digital Signature</a></li>                                     
+                                    <li><a href="../../nav/registration/shop_act.php">Shop Act Registration</a></li>
+                                    <li><a href="../../nav/registration/drug_license.php">Drug License</a></li>
+                                    <li><a href="../../nav/registration/udyam.php">Udyam Registration</a></li>                                   
+                                    <li><a href="../../nav/registration/fire_license.php">Fire License</a></li>
+                                    <li><a href="../../nav/registration/factory_license.php">Factory License</a></li>                                     
+                                    <li><a href="../../nav/registration/bocw.php">BOCW License</a></li>
+                                    <li><a href="../../nav/registration/psara.php">PSARA License</a></li>
+                                    <li><a href="../../nav/registration/clra.php">CLRA License</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- START UP -->
+                            <li>
+                                <a href="../../nav/startup/startup.php">Start up <i class="fa fa-angle-down"></i></a>
+                                <ul class="cols-2">
+                                    <li><a href="../../nav/startup/proprietorship.php">Proprietorship</a></li>
+                                   <li><a href="../../nav/startup/partnership.php">Partnership</a></li>
+                                    <li><a href="../../nav/startup/one_person.php">One Person Company</a></li>
+                                    <li><a href="../../nav/startup/llp_registration.php">Limited Liability Partnership</a></li>
+                                    <li><a href="../../nav/startup/pvt_ltd.php">Private Limited Company</a></li>
+                                    <li><a href="../../nav/startup/section_8.php">Section 8 Company</a></li>
+                                    <li><a href="../../nav/startup/trust_registration.php">Trust Registration</a></li>
+                                    <li><a href="../../nav/startup/public_ltd.php">Public Limited Company</a></li>
+                                   <li><a href="../../nav/startup/producer_company.php">Producer Company</a></li>
+                                    <li><a href="../../nav/startup/indian_subsidiary.php">Indian Subsidiary</a></li>
+                                </ul>
+                            </li>
+
+                      
+
+                            <!-- GST -->
+                            <li>
+                                <a href="../../nav/gst/gst.php">GST <i class="fa fa-angle-down"></i></a>
+                                <ul class="cols-2">
+                                    <li><a href="../../nav/gst/gst_registration.php">GST Registration</a></li>
+                                    <li><a href="../../nav/gst/gstreturn_filing.php">GST Return Filing by Accountant</a></li>
+                                    <li><a href="../../nav/gst/gstnil_return.php">GST NIL Return Filing</a></li>
+                                    <li><a href="../../nav/gst/gst_lut.php">GST LUT Form</a></li>
+                                    <li><a href="../../nav/gst/gst_notice.php">GST Notice</a></li>
+                                    <li><a href="../../nav/gst/gstr_9.php">GST Annual Return Filing (GSTR-9)</a></li>
+                                    <li><a href="../../nav/gst/gst_foreigners.php">GST Registration for Foreigners</a></li>
+                                    <li><a href="../../nav/gst/gst_amendment.php">GST Amendment</a></li>
+                                    <li><a href="../../nav/gst/gst_revocation.php">GST Revocation</a></li>
+                                    <li><a href="../../nav/gst/gstr_10.php">GSTR-10</a></li>
+                                    <li><a href="../../nav/gst/virtualoffice_gst.php">Virtual Office + GSTIN</a></li>
+									<li><a href="../../nav/gst/ca_support.php">CA Support</a></li>
+									 <li><a href="../../nav/gst/bookkeeping.php">Bookkeeping</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- INCOME TAX -->
+                            <li>
+                                <a href="../../nav/incometax/incometax.php">Income Tax <i class="fa fa-angle-down"></i></a>
+                                <ul class="cols-2">
+                                    <li><a href="../../nav/incometax/incometax_filing.php">Income Tax E-Filing</a></li>
+                                    <li><a href="../../nav/incometax/businesstax_filing.php">Business Tax Filing</a></li>
+                                    <li><a href="../../nav/incometax/partnership_itr.php">Partnership Firm / LLP ITR</a></li>
+                                    <li><a href="../../nav/incometax/company_itr.php">Company ITR Filing</a></li>
+                                    <li><a href="../../nav/incometax/trusttax_filing.php">Trust / NGO Tax Filing</a></li>
+                                    <li><a href="../../nav/incometax/15ca_15cb.php">15CA - 15CB Filing</a></li>
+                                    <li><a href="../../nav/incometax/tan_registration.php">TAN Registration</a></li>
+                                    <li><a href="../../nav/incometax/tds_return.php">TDS Return Filing</a></li>
+                                    <li><a href="../../nav/incometax/incometax_notice.php">Income Tax Notice</a></li>
+									<li><a href="../../nav/incometax/ca_support.php">CA Support</a></li>
+									 <li><a href="../../nav/incometax/bookkeeping.php">Bookkeeping</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- MCA & COMPLIANCE -->
+                            <li>
+                                <a href="../../nav/mca/mca.php">MCA & Compliance <i class="fa fa-angle-down"></i></a>
+                                <ul class="cols-3">
+                                    <li><a href="../../nav/mca/company_compliance.php">Company Compliance</a></li>
+                                    <li><a href="../../nav/mca/llp_compliance.php">LLP Compliance</a></li>
+                                    <li><a href="../../nav/mca/opc_compliance.php">OPC Compliance</a></li>
+                                    <li><a href="../../nav/mca/name_change.php">Name Change - Company</a></li>
+                                    <li><a href="../../nav/mca/office_change.php">Registered Office Change</a></li>
+                                    <li><a href="../../nav/mca/din_ekyc.php">DIN eKYC Filing</a></li>
+                                    <li><a href="../../nav/mca/din_reactivation.php">DIN Reactivation</a></li>
+                                    <li><a href="../../nav/mca/director_change.php">Director Change</a></li>
+                                    <li><a href="../../nav/mca/remove_director.php">Remove Director</a></li>
+                                    <li><a href="../../nav/mca/adt1_filing.php">ADT-1 Filing</a></li>
+                                    <li><a href="../../nav/mca/dpt3_filing.php">DPT-3 Filing</a></li>
+                                    <li><a href="../../nav/mca/llp_11.php">LLP Form 11 Filing</a></li>
+                                    <li><a href="../../nav/mca/dormant_status.php">Dormant Status Filing</a></li>
+                                    <li><a href="../../nav/mca/moa_amendment.php">MOA Amendment</a></li>
+                                    <li><a href="../../nav/mca/aoa_amendment.php">AOA Amendment</a></li>
+                                    <li><a href="../../nav/mca/authorized_capital.php">Authorized Capital Increase</a></li>
+                                    <li><a href="../../nav/mca/share_transfer.php">Share Transfer</a></li>
+                                    <li><a href="../../nav/mca/demat_shares.php">Demat of Shares</a></li>
+                                    <li><a href="../../nav/mca/windingup_llp.php">Winding Up - LLP</a></li>
+                                    <li><a href="../../nav/mca/windingup_company.php">Winding Up - Company</a></li>
+                                    <li><a href="../../nav/mca/inc_20a.php">Commencement (INC-20A)</a></li>
+                                </ul>
+                            </li>
+							
+							
+                            <!-- TRADEMARK -->
+                            <li>
+                                <a href="../../nav/trademark/trademark.php">Trademark <i class="fa fa-angle-down"></i></a>
+                                <ul class="cols-3">
+                                   <li><a href="../../nav/trademark/trademark_registration.php">Trademark Registration</a></li>
+                                   <li><a href="../../nav/trademark/trademark_objection.php">Trademark Objection</a></li>
+                                   <li><a href="../../nav/trademark/trademark_certificate.php">Trademark Certificate</a></li>
+                                   <li><a href="../../nav/trademark/trademark_opposition.php">Trademark Opposition</a></li>
+                                   <li><a href="../../nav/trademark/trademark_hearing.php">Trademark Hearing</a></li>
+                                   <li><a href="../../nav/trademark/trademark_rectification.php">Trademark Rectification</a></li>                                     
+                                   <li><a href="../../nav/trademark/trademark_infringement.php">TM Infringement Notice</a></li>
+                                   <li><a href="../../nav/trademark/trademark_renewal.php">Trademark Renewal</a></li>
+                                   <li><a href="../../nav/trademark/trademark_transfer.php">Trademark Transfer</a></li>                                   
+                                   <li><a href="../../nav/trademark/expedited_registration.php">Expedited TM Registration</a></li>
+                                   <li><a href="../../nav/trademark/logo_designing.php">Logo Designing</a></li>
+                                   <li><a href="../../nav/trademark/design_registration.php">Design Registration</a></li>
+                                   <li><a href="../../nav/trademark/design_objection.php">Design Objection</a></li>                                     
+                                   <li><a href="../../nav/trademark/copyright_registration.php">Copyright Registration</a></li>
+                                   <li><a href="../../nav/trademark/copyright_objection.php">Copyright Objection</a></li>
+                                   <li><a href="../../nav/trademark/patent_registration.php">Patent Registration</a></li>                                   
+                                   <li><a href="../../nav/trademark/trademark_protection.php">Trademark Protection</a></li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+(function () {
+    var header = document.querySelector('.main-header');
+    if (!header) return;
+
+    var menuBtn = header.querySelector('.menu-toggle');
+    var primaryList = header.querySelector('.main-menu > ul');
+
+    function isMobileNav() {
+        return window.matchMedia && window.matchMedia('(max-width: 991px)').matches;
+    }
+
+    // Mobile main menu toggle
+    if (menuBtn && primaryList) {
+        menuBtn.addEventListener('click', function () {
+            var open = header.classList.toggle('is-nav-open');
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    }
+
+    // Add submenu toggle buttons (mobile)
+    function ensureSubmenuToggles() {
+        var items = header.querySelectorAll('.main-menu > ul > li');
+        for (var i = 0; i < items.length; i++) {
+            var li = items[i];
+            var submenu = null;
+            var link = null;
+            for (var j = 0; j < li.children.length; j++) {
+                var el = li.children[j];
+                if (el.tagName === 'UL') submenu = el;
+                if (el.tagName === 'A') link = el;
+            }
+            if (!submenu || !link) continue;
+
+            var hasToggle = false;
+            for (var k = 0; k < li.children.length; k++) {
+                var child = li.children[k];
+                if (child.tagName === 'BUTTON' && child.classList && child.classList.contains('submenu-toggle')) {
+                    hasToggle = true;
+                    break;
+                }
+            }
+            if (hasToggle) continue;
+
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'submenu-toggle';
+            btn.setAttribute('aria-label', 'Toggle submenu');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.innerHTML = '<span class="fa fa-angle-down" aria-hidden="true"></span>';
+
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (!isMobileNav()) return;
+
+                var parent = this.parentNode;
+                var open = parent.classList.toggle('open');
+                this.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+
+            li.appendChild(btn);
+        }
+    }
+
+    function resetNavStateOnDesktop() {
+        if (isMobileNav()) return;
+        header.classList.remove('is-nav-open');
+        if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+        var opened = header.querySelectorAll('.main-menu li.open');
+        for (var i = 0; i < opened.length; i++) opened[i].classList.remove('open');
+    }
+
+    // init
+    ensureSubmenuToggles();
+    resetNavStateOnDesktop();
+
+    window.addEventListener('resize', resetNavStateOnDesktop);
+})();
+</script>
+<!--End Main Header -->
+    
+    
+<!--hero section-->
+   <!-- REVOLUTION SLIDER HERO SECTION -->
+<style>
+    /* =========================================
+       1. GLOBAL / DESKTOP STYLES
+    ========================================= */
+    .rev_slider_wrapper {
+        position: relative;
+        background: #222;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* Dark Overlay */
+    .rev_slider li::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%);
+        z-index: 5; 
+        pointer-events: none; 
+    }
+
+    /* Content Box */
+    .slide-content-box {
+        position: relative;
+        z-index: 10;
+        padding-left: 30px;
+        border-left: 5px solid #f57c00; 
+        width: 100%; /* Ensure it fills the container width defined in HTML */
+    }
+
+    /* Heading */
+    .slide-content-box h1 {
+        color: #ffffff;
+        font-size: 60px;
+        font-weight: 700;
+        line-height: 1.1em;
+        margin-bottom: 25px;
+        text-transform: capitalize;
+        text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+        white-space: normal !important; 
+        word-wrap: break-word; /* Prevents long words from breaking layout */
+    }
+
+    /* Paragraph */
+    .slide-content-box p {
+        color: #e0e0e0;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 30px;
+        margin-bottom: 35px;
+        white-space: normal !important;
+    }
+
+    /* Button */
+    .slide-content-box .theme-btn {
+        position: relative;
+        z-index: 10;
+        background: #f57c00;
+        color: #ffffff;
+        padding: 14px 35px;
+        font-weight: 600;
+        font-size: 16px;
+        border-radius: 4px;
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-block;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(245, 124, 0, 0.3);
+        text-decoration: none;
+        white-space: nowrap; 
+    }
+    .slide-content-box .theme-btn:hover {
+        background: #fff;
+        color: #f57c00;
+        transform: translateY(-3px);
+    }
+    .slide-content-box .theme-btn span { margin-left: 8px; }
+
+    /* Navigation Arrows */
+    #slider1 .tp-leftarrow, #slider1 .tp-rightarrow {
+        top: auto !important; bottom: 60px !important;
+        background: rgba(255, 255, 255, 0.1); 
+        width: 60px !important; height: 60px !important;
+        line-height: 60px !important; text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        z-index: 99;
+    }
+    #slider1 .tp-leftarrow:before, #slider1 .tp-rightarrow:before {
+        font-family: "FontAwesome"; font-size: 20px; color: #fff; line-height: 60px;
+    }
+    #slider1 .tp-leftarrow:before { content: "\f104"; }
+    #slider1 .tp-rightarrow:before { content: "\f105"; }
+    #slider1 .tp-leftarrow { right: 100px !important; left: auto !important; }
+    #slider1 .tp-rightarrow { right: 30px !important; left: auto !important; }
+    #slider1 .tp-leftarrow:hover, #slider1 .tp-rightarrow:hover {
+        background: #f57c00; border-color: #f57c00;
+    }
+
+    /* =========================================
+       2. RESPONSIVE BREAKPOINTS
+    ========================================= */
+    
+    /* TABLET / NOTEBOOK (768px - 991px) */
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .rev_slider_wrapper, .rev_slider {
+            min-height: 500px !important;
+        }
+        .slide-content-box h1 {
+            font-size: 40px !important;
+        }
+        .slide-content-box p {
+            font-size: 16px !important;
+        }
+    }
+
+    /* MOBILE (Max 767px) */
+    @media only screen and (max-width: 767px) {
+        .rev_slider_wrapper, .rev_slider {
+            height: 420px !important;     
+            max-height: 420px !important;
+            min-height: 420px !important;
+        }
+        .slide-content-box {
+            padding-left: 15px;      
+            border-left-width: 4px;  
+            /* Width is handled by data-width in HTML, but we set font sizes here */
+        }
+        .slide-content-box h1 {
+            font-size: 24px !important; 
+            margin-bottom: 10px;
+        }
+        .slide-content-box p {
+            font-size: 14px !important; 
+            line-height: 22px !important;
+            margin-bottom: 20px;
+        }
+        .slide-content-box .theme-btn {
+            padding: 10px 25px;          
+            font-size: 13px;             
+        }
+        /* Mobile Arrows */
+        #slider1 .tp-leftarrow, #slider1 .tp-rightarrow {
+            bottom: 20px !important;    
+            width: 40px !important; height: 40px !important;
+            line-height: 40px !important;
+        }
+        #slider1 .tp-leftarrow:before, #slider1 .tp-rightarrow:before {
+            line-height: 40px !important; font-size: 16px !important;
+        }
+        #slider1 .tp-leftarrow { right: 60px !important; }
+        #slider1 .tp-rightarrow { right: 10px !important; }
+    }
+</style>
+
+<section class="rev_slider_wrapper">
+    <div id="slider1" class="rev_slider"  data-version="5.0">
+        <ul>
+            
+            <!-- SLIDE 1 -->
+            <li data-transition="fade">
+                <img src="images/main-slider/1.jpg"  
+                     alt="" 
+                     width="100%" height="100%" 
+                     data-bgposition="center top" 
+                     data-bgfit="cover" 
+                     data-bgrepeat="no-repeat" 
+                     class="rev-slidebg">
+                
+                <!-- 
+                   FIX APPLIED HERE:
+                   data-width="['750','600','500','300']"  <-- Forces width on Desktop/Laptop/Tablet/Mobile
+                   data-whitespace="normal"                 <-- Allows wrapping inside the slider
+                -->
+                <div class="tp-caption"
+                    data-x="left" data-hoffset="20" 
+                    data-y="center" data-voffset="0" 
+                    data-width="['750','600','500','300']"
+                    data-height="auto"
+                    data-whitespace="normal"
+                    data-transform_idle="o:1;"         
+                    data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;" 
+                    data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" 
+                    data-mask_in="x:[100%];y:0;s:inherit;e:inherit;" 
+                    data-splitin="none" 
+                    data-splitout="none"  
+                    data-responsive_offset="on"
+                    data-start="500">
+                    <div class="slide-content-box">
+                        <h1>Provide Best <br>Consulting Services</h1>
+                        <p>We provide comprehensive, best-in-class consulting services that deliver strategic insight, operational excellence, and sustainable business growth.</p>
+                        <a class="theme-btn btn-style-two" href="contact.php">Contact us  <span class="fa fa-angle-right"></span></a>    
+                    </div>
+                </div>
+            </li>
+
+            <!-- SLIDE 2 -->
+            <li data-transition="fade">
+                <img src="images/main-slider/2.jpg"  
+                     alt="" 
+                     width="100%" height="100%" 
+                     data-bgposition="center top" 
+                     data-bgfit="cover" 
+                     data-bgrepeat="no-repeat" 
+                     class="rev-slidebg">
+                
+                <div class="tp-caption"
+                    data-x="left" data-hoffset="20" 
+                    data-y="center" data-voffset="0" 
+                    data-width="['750','600','500','300']"
+                    data-height="auto"
+                    data-whitespace="normal"
+                    data-transform_idle="o:1;"         
+                    data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;" 
+                    data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" 
+                    data-mask_in="x:[100%];y:0;s:inherit;e:inherit;" 
+                    data-splitin="none" 
+                    data-splitout="none"  
+                    data-responsive_offset="on"
+                    data-start="500">
+                    <div class="slide-content-box">
+                        <h1>We Are a Trusted Consulting<br> Firm in India</h1>
+                        <p>A trusted consulting firm in India built on integrity, deep industry expertise, proven results, and a strong commitment to delivering sustainable business value.</p>
+                        <a class="theme-btn btn-style-two" href="contact.php">Contact us  <span class="fa fa-angle-right"></span></a>    
+                    </div>
+                </div>
+            </li>
+
+            <!-- SLIDE 3 -->
+            <li data-transition="fade">
+                <img src="images/main-slider/3.jpg"  
+                     alt="" 
+                     width="100%" height="100%" 
+                     data-bgposition="center top" 
+                     data-bgfit="cover" 
+                     data-bgrepeat="no-repeat" 
+                     class="rev-slidebg">
+                
+                <div class="tp-caption"
+                    data-x="left" data-hoffset="20" 
+                    data-y="center" data-voffset="0" 
+                    data-width="['750','600','500','300']"
+                    data-height="auto"
+                    data-whitespace="normal"
+                    data-transform_idle="o:1;"         
+                    data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;" 
+                    data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" 
+                    data-mask_in="x:[100%];y:0;s:inherit;e:inherit;" 
+                    data-splitin="none" 
+                    data-splitout="none"  
+                    data-responsive_offset="on"
+                    data-start="500">
+                    <div class="slide-content-box">
+                        <h1>We Enable Strategic<br> Business Success</h1>
+                        <p>We empower businesses across India with strategic consulting expertise, actionable insights, and solutions designed for long-term success.</p>
+                        <a class="theme-btn btn-style-two" href="contact.php">Contact us  <span class="fa fa-angle-right"></span></a>    
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section><!--hero section-->
+ 
+ 
+<!--welcome-->
+	<style>
+    /* =========================================
+       SERVICES SECTION CUSTOM STYLES
+    ========================================= */
+    .services-style-one {
+        padding: 90px 0 60px;
+        background-color: #f8f9fa;
+        overflow: hidden;
+    }
+
+    /* --- FLEXBOX FIX FOR EQUAL HEIGHTS --- */
+    /* Override standard float behavior to make cols equal height */
+    .services-style-one .row.clearfix {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* 1. Title Styling */
+    .sec-title h2 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
+        color: #222;
+    }
+    .sec-title h2 span.theme-color {
+        color: #f57c00; /* Orange Theme */
+    }
+    .sec-title p {
+        font-size: 16px;
+        line-height: 26px;
+        color: #777;
+        margin-bottom: 50px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* 2. Card Container Styling */
+    .service-block2 {
+        margin-bottom: 30px;
+        opacity: 0; /* Hidden by default for animation */
+        animation: fadeInUp 0.8s ease forwards;
+        transform: translateY(30px);
+        height: 100%; /* Important for Equal Height */
+        display: flex; /* Structure to stretch children */
+        flex-direction: column;
+    }
+
+    /* Animation Delays */
+    .column:nth-child(1) .service-block2 { animation-delay: 0.1s; }
+    .column:nth-child(2) .service-block2 { animation-delay: 0.3s; }
+    .column:nth-child(3) .service-block2 { animation-delay: 0.5s; }
+
+    .service-block2 .inner-box {
+        background: #fff;
+        box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        border-bottom: 3px solid transparent;
+        height: 100%; /* Stretches to fill parent */
+        display: flex; /* Stretches content vertically */
+        flex-direction: column;
+    }
+
+    /* 3. Hover Lift Animation */
+    .service-block2:hover .inner-box {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 30px rgba(245, 124, 0, 0.15); /* Orange tinted shadow */
+        border-bottom-color: #f57c00;
+    }
+
+    /* 4. Image Box */
+    .image-box {
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+        background: #000;
+        flex: 0 0 auto; /* Keeps image height automatic based on aspect ratio */
+    }
+    
+    .image-box img {
+        width: 100%;
+        transition: all 0.5s ease;
+        display: block;
+    }
+
+    .service-block2:hover .image-box img {
+        transform: scale(1.1);
+        opacity: 0.6;
+    }
+
+    /* Overlay Caption Styling */
+    .image-box figcaption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(245, 124, 0, 0.9);
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.3s ease;
+        z-index: 2;
+    }
+
+    .service-block2:hover .image-box figcaption {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .image-box figcaption h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+    
+    .image-box figcaption p {
+        color: #fff;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    /* 5. Text Content */
+    .service-block2 .content {
+        padding: 25px 20px;
+        text-align: center;
+        flex-grow: 1; /* Pushes content to fill the remaining height */
+        display: flex;
+        flex-direction: column;
+        /* Optionally align content */
+        /* justify-content: space-between; */
+    }
+
+    .service-block2 .content h4 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 15px;
+        transition: 0.3s;
+    }
+
+    .service-block2:hover .content h4 {
+        color: #f57c00;
+    }
+
+    .service-block2 .content p {
+        font-size: 15px;
+        color: #666;
+        line-height: 1.7em;
+        margin-bottom: 0;
+    }
+
+    /* 6. Entrance Animation Keyframes */
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<section class="services-style-one">
+    <div class="auto-container">
+        <!--Title-->
+        <div class="sec-title centered">
+            <h2>Welcome To Pa<span class="theme-color">rishrama</span></h2>
+            <p>We partner with you at every stage to identify, evaluate, and unlock new business opportunities.</p>
+        </div>
+
+        <div class="row clearfix">
+
+            <!--Service Block 1-->
+            <div class="column col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="service-block2">
+                    <div class="inner-box">                            
+                        <figure class="image-box">
+                            <img src="images/welcome/1.jpg" alt="Consulting Expertise">
+                            <!-- Hover Overlay -->
+                            <figcaption>
+                                <h3>Trusted Consulting Expertise</h3>
+                                <p>Delivering reliable guidance backed by experience and industry knowledge.</p>                                    
+                            </figcaption>
+                            <a href="javascript:;" class="overlay-link"></a>
+                        </figure>
+                        <div class="content">
+                            <h4>Trusted Consulting Expertise</h4>
+                            <p>Delivering reliable guidance backed by deep industry knowledge, proven expertise, and practical experience to 
+                            support confident decision-making and sustainable business growth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Service Block 2-->
+            <div class="column col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="service-block2">
+                    <div class="inner-box">
+                        <figure class="image-box">
+                            <img src="images/welcome/2.jpg" alt="Strategic Solutions">
+                            <!-- Hover Overlay -->
+                            <figcaption>
+                                <h3>Strategic & Sustainable Solutions</h3>
+                                <p>Helping businesses identify opportunities and achieve long-term growth.</p>
+                            </figcaption>
+                            <a href="javascript:;" class="overlay-link"></a>
+                        </figure>
+                        <div class="content">
+                            <h4>Strategic & Sustainable Solutions</h4>
+                            <p>Helping businesses identify new opportunities, overcome challenges, and achieve sustainable long-term 
+                            growth through strategic insight and informed guidance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Service Block 3-->
+            <div class="column col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="service-block2">
+                    <div class="inner-box">
+                        <figure class="image-box">
+                            <img src="images/welcome/3.jpg" alt="Client Approach">
+                            <!-- Hover Overlay -->
+                            <figcaption>
+                                <h3>Client-Focused Approach</h3>
+                                <p>Partnering closely with clients to deliver tailored and impactful results.</p>
+                            </figcaption>
+                            <a href="javascript:;" class="overlay-link"></a>
+                        </figure>
+                        <div class="content">
+                            <h4>Client-Focused Approach</h4>
+                            <p>Partnering closely with clients to understand their goals and deliver tailored, impactful solutions that drive measurable 
+                            and lasting results.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section><!--welcome-->
+    
+ 
+<!--About-->
+	<style>
+    /* =========================================
+       1. GLOBAL SETTINGS & ANIMATIONS
+    ========================================= */
+    .feature-style-1 {
+        padding: 100px 0;
+        background: #ffffff;
+        overflow: hidden;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .theme-color-text { color: #f57c00; }
+
+    /* Keyframes */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .reveal-on-scroll {
+        opacity: 0; /* Hidden by default */
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .reveal-active {
+        opacity: 1;
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* =========================================
+       2. LEFT COLUMN: CONTENT & FOUNDER
+    ========================================= */
+    .sec-title h2 {
+        font-size: 38px;
+        font-weight: 800;
+        margin-bottom: 15px;
+        color: #222;
+        position: relative;
+    }
+
+    /* Quote / Highlight Text */
+    .highlight-content h3 {
+        font-size: 24px;
+        line-height: 1.5;
+        font-weight: 600;
+        color: #333;
+        padding-left: 20px;
+        border-left: 5px solid #f57c00;
+        margin-bottom: 25px;
+        background: linear-gradient(to right, #fff8f0, #fff);
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    /* Bullet List */
+    .styled-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px 0;
+    }
+
+    .styled-list li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 12px;
+        color: #555;
+        font-size: 16px;
+    }
+
+    .styled-list li i {
+        position: absolute;
+        left: 0;
+        top: 4px;
+        color: #f57c00;
+        font-size: 14px;
+    }
+
+    /* Founder Section Wrapper */
+    .founder-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+        padding-top: 30px;
+    }
+
+    /* Author Info */
+    .author-block {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .author-block img {
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 5px 15px rgba(245, 124, 0, 0.2);
+        border: 3px solid #fff;
+    }
+
+    .author-details h4 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: #222;
+    }
+
+    .author-details span {
+        font-size: 14px;
+        color: #f57c00;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    /* Experience Counter (Orange Theme) */
+    .exp-counter {
+        background: #fff;
+        padding: 10px 25px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        border-radius: 12px;
+        text-align: center;
+        border-bottom: 4px solid #f57c00;
+        transition: transform 0.3s;
+        position: relative;
+    }
+
+    .exp-counter:hover {
+        transform: translateY(-5px);
+    }
+
+    .exp-number {
+        font-size: 42px;
+        font-weight: 800;
+        color: #f57c00;
+        line-height: 1;
+        display: block;
+    }
+
+    .exp-number .plus {
+        font-size: 24px;
+        color: #333;
+        vertical-align: super;
+    }
+
+    .exp-text {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #888;
+        letter-spacing: 1px;
+    }
+
+    /* =========================================
+       3. RIGHT COLUMN: TABS
+    ========================================= */
+    .tabs-wrapper {
+        padding-left: 20px;
+        position: relative;
+    }
+
+    /* Nav Pills Style */
+    .custom-tabs {
+        border-bottom: 1px solid #e5e5e5;
+        margin-bottom: 30px;
+    }
+
+    .custom-tabs > li > a {
+        color: #666;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 12px 25px;
+        background: transparent;
+        border-radius: 0;
+        position: relative;
+        transition: 0.3s;
+    }
+
+    .custom-tabs > li.active > a, 
+    .custom-tabs > li > a:hover {
+        background: transparent;
+        color: #f57c00;
+    }
+
+    /* Animated underline */
+    .custom-tabs > li > a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: #f57c00;
+        transition: 0.3s;
+    }
+
+    .custom-tabs > li.active > a::after {
+        width: 100%;
+    }
+
+    /* Tab Content */
+    .tab-text-content h3 {
+        font-size: 24px;
+        color: #222;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .tab-text-content p {
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+    .split-list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+    }
+
+    .split-list li {
+        width: 50%;
+        margin-bottom: 12px;
+        color: #444;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    .split-list li i {
+        color: #f57c00;
+        margin-right: 10px;
+        font-size: 16px;
+    }
+
+    /* =========================================
+       4. ATTRACTIVE BUTTON (Transparent Hover)
+    ========================================= */
+    .custom-btn {
+        margin-top: 30px;
+        position: relative;
+        display: inline-block;
+        padding: 12px 35px;
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #fff; /* Initial Text Color */
+        background: #f57c00; /* Initial Background */
+        border: 2px solid #f57c00; /* Border matches background */
+        border-radius: 5px;
+        transition: all 0.4s ease-in-out;
+        cursor: pointer;
+        text-decoration: none !important;
+        overflow: hidden;
+    }
+
+    .custom-btn:hover {
+        background: transparent; /* Background vanishes */
+        color: #f57c00; /* Text turns Orange */
+        border-color: #f57c00; /* Border remains visible */
+        box-shadow: none;
+    }
+
+    /* Icon Animation inside button */
+    .custom-btn i {
+        margin-left: 8px;
+        transition: transform 0.3s;
+    }
+
+    .custom-btn:hover i {
+        transform: translateX(5px); /* Slide arrow right */
+    }
+
+    /* Responsive Adjustments */
+    @media(max-width: 768px) {
+        .founder-wrapper {
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+        .tabs-wrapper {
+            margin-top: 50px;
+            padding-left: 0;
+        }
+        .author-block {
+            flex-direction: column;
+        }
+        .custom-tabs > li {
+            width: 33.3%;
+            padding: 0;
+        }
+        .custom-tabs > li > a {
+            padding: 10px 5px;
+            font-size: 14px;
+        }
+    }
+</style>
+
+<section class="feature-style-1">
+    <div class="auto-container">
+        <div class="row clearfix">
+            
+            <!-- LEFT COLUMN -->
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="reveal-on-scroll">
+                    <!-- Title -->
+                    <div class="sec-title">
+                        <h2>About <span class="theme-color-text">Us</span></h2>
+                    </div>
+
+                    <!-- Highlighted Intro -->
+                    <div class="highlight-content">
+                        <h3>Driving Business Success Through Expertise and Innovation.</h3>
+                    </div>
+
+                    <!-- Features List -->
+                    <ul class="styled-list">
+                        <li><i class="fa fa-check"></i> Providing reliable consulting solutions backed by years of industry experience.</li>
+                        <li><i class="fa fa-check"></i> Delivering actionable strategies for sustainable growth and efficiency.</li>
+                        <li><i class="fa fa-check"></i> Offering tailored solutions to meet each client’s unique needs.</li>
+                        <li><i class="fa fa-check"></i> Combining ethical practices with innovative approaches.</li>
+                    </ul>
+
+                    <!-- Founder & Counter -->
+                    <div class="founder-wrapper">
+                        <!-- Author -->
+                        <div class="author-block">
+                            <img src="images/about/prashanth.jpg" alt="Founder" class="animate-up">
+                            <div class="author-details">
+                                <h4>Prashanth T P</h4>
+                                <span>Founder & Director</span>
+                            </div>
+                        </div>
+
+                        <!-- Animated Counter -->
+                        <div class="exp-counter">
+                            <div class="exp-number">
+                                <span class="count-text" data-stop="8" data-speed="2000">0</span><span class="plus">+</span>
+                            </div>
+                            <div class="exp-text">Years of<br>Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RIGHT COLUMN -->
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="tabs-wrapper reveal-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="sec-title">
+                        <h2>Why Choose Us</h2>
+                    </div>
+
+                    <!-- Navigation Tabs -->
+                    <ul class="nav nav-pills custom-tabs nav-justified">
+                        <li class="active"><a data-toggle="pill" href="#menu1">Quality</a></li>
+                        <li><a data-toggle="pill" href="#menu2">Expertise</a></li>
+                        <li><a data-toggle="pill" href="#menu3">Focus</a></li>
+                    </ul>
+                  
+                    <div class="tab-content">
+                        
+                        <!-- TAB 1: Quality -->
+                        <div id="menu1" class="tab-pane fade in active tab-text-content">
+                            <h3>Uncompromising Quality</h3>
+                            <p>We are committed to delivering the highest standards of service, ensuring every solution is precise, reliable, and impactful. We consistently exceed client expectations through rigorous quality controls.</p>
+                            <ul class="split-list">
+                                <li><i class="fa fa-certificate"></i>Excellence</li>
+                                <li><i class="fa fa-certificate"></i>Precision</li>
+                                <li><i class="fa fa-certificate"></i>Reliability</li>
+                                <li><i class="fa fa-certificate"></i>Consistency</li>
+								 <li><i class="fa fa-certificate"></i>Innovation</li>
+                            <li><i class="fa fa-certificate"></i>Integrity</li>
+                            </ul>
+                        </div>
+						 
+                        
+                        <!-- TAB 2: Expertise -->
+                        <div id="menu2" class="tab-pane fade tab-text-content">
+                            <h3>Professional Expertise</h3>
+                            <p>We bring specialized knowledge, analytical depth, and extensive industry experience to deliver informed guidance. Our strategic clarity and practical solutions address complex challenges for growth.</p>
+                            <ul class="split-list">
+                                <li><i class="fa fa-star"></i>Proficiency</li>
+                                <li><i class="fa fa-star"></i>Specialization</li>
+                                <li><i class="fa fa-star"></i>Advisory</li>
+                                <li><i class="fa fa-star"></i>Analysis</li>
+								<li><i class="fa fa-star"></i>Capability</li>
+								<li><i class="fa fa-star"></i>Leadership</li>
+                            </ul>
+					
+                        </div>
+                        
+                        <!-- TAB 3: Client Focused -->
+                        <div id="menu3" class="tab-pane fade tab-text-content">
+                            <h3>Client-First Approach</h3>
+                            <p>We place our clients at the core of every engagement. We prioritize responsiveness, transparency, and collaboration to build lasting partnerships and drive measurable success.</p>
+                            <ul class="split-list">
+                                <li><i class="fa fa-users"></i>Understanding</li>
+                                <li><i class="fa fa-users"></i>Responsiveness</li>
+                                <li><i class="fa fa-users"></i>Transparency</li>
+                                <li><i class="fa fa-users"></i>Commitment</li>
+								<li><i class="fa fa-users"></i>Collaboration</li>
+								<li><i class="fa fa-users"></i>Trust</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Modern Button -->
+                    <div class="text-right">
+                        <a href="about_know.php" class="custom-btn">
+                            Know More <i class="fa fa-long-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> 
+</section>
+
+<!-- JAVASCRIPT FOR SCROLL ANIMATIONS AND COUNTER -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // 1. Setup Intersection Observer for Scroll Animations
+    const animObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-active');
+                animObserver.unobserve(entry.target); // Animate once
+            }
+        });
+    }, { threshold: 0.3 }); // Trigger when 30% visible
+
+    // Select items to animate
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+        animObserver.observe(el);
+    });
+
+    // 2. Logic for the Counter Number Animation
+    function runCounter(el) {
+        const target = parseInt(el.getAttribute('data-stop'));
+        const duration = parseInt(el.getAttribute('data-speed'));
+        const start = 0;
+        const startTime = performance.now();
+
+        function step(timestamp) {
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            el.innerText = Math.floor(progress * (target - start) + start);
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                el.innerText = target;
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    // Observer specifically for the counter
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                runCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const counterEl = document.querySelector('.count-text');
+    if(counterEl) {
+        counterObserver.observe(counterEl);
+    }
+});
+</script><!--About-->
+
+
+<!--Service-->
+	<style>
+    /* =========================================
+       1. SECTION BACKGROUND & OVERLAY
+    ========================================= */
+    .services-marquee-section {
+        position: relative;
+        padding: 100px 0;
+        background-attachment: fixed; /* Parallax effect */
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+    }
+
+    /* Dark Overlay for Readability */
+    .services-marquee-section::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.75));
+        z-index: 1;
+    }
+
+    .auto-container {
+        position: relative;
+        z-index: 2; /* Bring content above overlay */
+    }
+
+    /* Title Styling */
+    .services-title h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 50px;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .services-title h2::after {
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 3px;
+        background: #f57c00;
+        bottom: -10px;
+        left: 0;
+    }
+
+    /* Button Styling */
+    .explore-btn {
+        background: transparent;
+        color: #f57c00;
+        border: 2px solid #f57c00;
+        padding: 10px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none !important;
+    }
+
+    .explore-btn:hover {
+        background: #f57c00;
+        color: #fff;
+        box-shadow: 0 0 15px rgba(245, 124, 0, 0.5);
+    }
+
+    .explore-btn span { margin-left: 8px; }
+
+    /* =========================================
+       2. MARQUEE CONTAINER & ANIMATION
+    ========================================= */
+    .marquee-wrapper {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        padding: 20px 0;
+        /* Create fading edges */
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+
+    .marquee-track {
+        display: flex;
+        width: max-content;
+        gap: 30px;
+        animation: scrollMarquee 40s linear infinite;
+    }
+
+    /* Pause animation on hover for readability */
+    .marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes scrollMarquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); } /* -50% assumes content is duplicated exactly once */
+    }
+
+    /* =========================================
+       3. SERVICE CARD STYLING (Glassmorphism)
+    ========================================= */
+    .service-card {
+        width: 320px;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.05); /* Glass Dark */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 30px 25px;
+        transition: all 0.4s ease;
+        position: relative;
+        backdrop-filter: blur(5px);
+    }
+
+    /* Hover Effect: Lift + Glow */
+    .service-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #f57c00;
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                    0 0 15px rgba(245, 124, 0, 0.2);
+    }
+
+    /* Icon Box */
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        background: rgba(245, 124, 0, 0.15);
+        color: #f57c00;
+        font-size: 24px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        transition: 0.3s;
+    }
+
+    .service-card:hover .card-icon {
+        background: #f57c00;
+        color: #fff;
+        transform: rotateY(360deg);
+    }
+
+    /* Content */
+    .service-card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 15px;
+        letter-spacing: 0.5px;
+    }
+
+    .service-card p {
+        font-size: 14px;
+        color: #bbb;
+        line-height: 1.6;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Limit text lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Orange Line at bottom of card */
+    .service-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: #f57c00;
+        transition: 0.4s ease;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .service-card:hover::after {
+        width: 100%;
+    }
+
+</style>
+
+<section class="services-marquee-section" style="background-image:url(images/background/5.jpg);">
+    <div class="auto-container">
+        
+        <!-- Header -->
+        <div class="row clearfix" style="margin-bottom: 30px;">
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <div class="services-title">
+                    <h2>Our Services</h2>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-12 text-right">
+                <a href="services_exp.php" class="explore-btn">
+                    Explore More <span class="fa fa-angle-right"></span> 
+                </a>
+            </div>
+        </div>
+
+        <!-- Marquee Slider -->
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+
+                <!-- === SET 1 (Original) === -->
+                
+                <!-- 1. Compliance -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-shield"></span></div>
+                    <h3>Compliance</h3>
+                    <p>Investor pivot niche market android success twitter ownership adopters gamification leverage infrastructure.</p>
+                </div>
+
+                <!-- 2. Start Up -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-rocket"></span></div>
+                    <h3>Start Up</h3>
+                    <p>Expert guidance to launch your business with proper legal structuring and foundational strategy.</p>
+                </div>
+
+                <!-- 3. Registration -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-clipboard"></span></div>
+                    <h3>Registration</h3>
+                    <p>Seamless company registration services including Private Limited, LLP, and OPC setups.</p>
+                </div>
+
+                <!-- 4. Trademark -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-balance-scale"></span></div>
+                    <h3>Trademark</h3>
+                    <p>Protect your brand identity with our comprehensive Trademark search and filing services.</p>
+                </div>
+
+                <!-- 5. GST -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-file-text"></span></div>
+                    <h3>GST</h3>
+                    <p>Hassle-free GST registration and return filing ensuring you stay tax compliant effortlessly.</p>
+                </div>
+
+                <!-- 6. Income Tax -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-calculator"></span></div>
+                    <h3>Income Tax</h3>
+                    <p>Accurate income tax filing and planning for individuals and corporate entities.</p>
+                </div>
+
+                <!-- 7. MCA Compliance -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-gavel"></span></div>
+                    <h3>MCA & Compliance</h3>
+                    <p>Complete Ministry of Corporate Affairs compliances including annual returns and forms.</p>
+                </div>
+
+
+                <!-- === SET 2 (Duplicated for Loop) === -->
+
+                <!-- 1 Copy -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-shield"></span></div>
+                    <h3>Compliance</h3>
+                    <p>Investor pivot niche market android success twitter ownership adopters gamification leverage infrastructure.</p>
+                </div>
+
+                <!-- 2 Copy -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-rocket"></span></div>
+                    <h3>Start Up</h3>
+                    <p>Expert guidance to launch your business with proper legal structuring and foundational strategy.</p>
+                </div>
+
+                <!-- 3 Copy -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-clipboard"></span></div>
+                    <h3>Registration</h3>
+                    <p>Seamless company registration services including Private Limited, LLP, and OPC setups.</p>
+                </div>
+
+                <!-- 4 Copy -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-balance-scale"></span></div>
+                    <h3>Trademark</h3>
+                    <p>Protect your brand identity with our comprehensive Trademark search and filing services.</p>
+                </div>
+
+                <!-- 5 Copy -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-file-text"></span></div>
+                    <h3>GST</h3>
+                    <p>Hassle-free GST registration and return filing ensuring you stay tax compliant effortlessly.</p>
+                </div>
+
+                <!-- 6 Copy -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-calculator"></span></div>
+                    <h3>Income Tax</h3>
+                    <p>Accurate income tax filing and planning for individuals and corporate entities.</p>
+                </div>
+
+                <!-- 7 Copy -->
+                <div class="service-card">
+                    <div class="card-icon"><span class="fa fa-gavel"></span></div>
+                    <h3>MCA & Compliance</h3>
+                    <p>Complete Ministry of Corporate Affairs compliances including annual returns and forms.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section><!--Service-->
+
+
+<!--Projects-->
+	   
+    <!--Gallery Section-->
+    <section class="gallery-section">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <div class="sec-title">
+                        <h2>Our Projects</h2>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-12">
+                    <ul class="post-filter style-2 list-inline">
+                        <li class="active" data-filter=".default-portfolio-item">
+                            <span>View All</span>
+                        </li>
+                        <li data-filter=".Corporate">
+                            <span>Corporate Compliance</span>
+                        </li>
+                        <li data-filter=".Business">
+                            <span>Business Registrations</span>
+                        </li>
+                        <li data-filter=".GST">
+                            <span>GST & Tax Compliance</span>
+                        </li>
+                        <li data-filter=".Trademark">
+                            <span>Trademark & IP Services</span>
+                        </li>
+						<li data-filter=".Startup">
+                            <span>Startup Advisory</span>
+                        </li>
+						<li data-filter=".Digital">
+                            <span>Digital Compliance </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row-15 grid clearfix masonary-layout filter-layout">
+                <!--Corporate Compliance-->
+                <div class="default-portfolio-item Corporate col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <a href="images/projects/corporate.jpg" class="lightbox-image option-btn" title="Image Caption Here" data-fancybox-group="example-gallery">
+                            <figure class="effect-bubba">
+                                <img src="images/projects/corporate.jpg" alt="image" style="width: 300px; height: 200px;">
+                                <figcaption>
+                                    <div class="content">
+                                        <h2>Corporate Compliance</h2>
+                                        <p>Managing MCA and statutory compliance across industries.</p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+                
+                <!--Business Registrations-->
+                <div class="default-portfolio-item Business col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <a href="images/projects/business.jpg" class="lightbox-image option-btn" title="Image Caption Here" data-fancybox-group="example-gallery">
+                            <figure class="effect-bubba">
+                                <img src="images/projects/business.jpg" alt="image" style="width: 300px; height: 200px;">
+                                <figcaption>
+                                    <div class="content">
+                                        <h2>Business Registrations</h2>
+                                        <p>Handling company, LLP, & startup registrations end to end.</p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+                
+                <!--GST & Tax Compliance-->
+                <div class="default-portfolio-item GST  col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <a href="images/projects/gst.jpg" class="lightbox-image option-btn" title="Image Caption Here" data-fancybox-group="example-gallery">
+                            <figure class="effect-bubba">
+                                <img src="images/projects/gst.jpg" alt="image" style="width: 300px; height: 200px;">
+                                <figcaption>
+                                    <div class="content">
+                                        <h2>GST & Tax Compliance</h2>
+                                        <p>Providing accurate GST and income tax filing services.</p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+                
+                <!--Trademark & IP Services-->
+                <div class="default-portfolio-item  Trademark col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <a href="images/projects/trademark.jpg" class="lightbox-image option-btn" title="Image Caption Here" data-fancybox-group="example-gallery">
+                            <figure class="effect-bubba">
+                                <img src="images/projects/trademark.jpg" alt="image" style="width: 300px; height: 200px;">
+                                <figcaption>
+                                    <div class="content">
+                                        <h2>Trademark & IP Services</h2>
+                                        <p>Assisting with trademark registration and IP protection.</p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+				
+				 <!--Startup Advisory-->
+                <div class="default-portfolio-item Startup col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <a href="images/projects/startup.jpg" class="lightbox-image option-btn" title="Image Caption Here" data-fancybox-group="example-gallery">
+                            <figure class="effect-bubba">
+                                <img src="images/projects/startup.jpg" alt="image" style="width: 300px; height: 200px;">
+                                <figcaption>
+                                    <div class="content">
+                                        <h2>Startup Advisory</h2>
+                                        <p>Supporting startups and MSMEs with compliance and strategy.</p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                </div>
+				
+				 <!--Trademark & IP Services-->
+                <div class="default-portfolio-item  Digital col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="inner-box">
+                        <a href="images/projects/digital.jpg" class="lightbox-image option-btn" title="Image Caption Here" data-fancybox-group="example-gallery">
+                            <figure class="effect-bubba">
+                                <img src="images/projects/digital.jpg" alt="image" style="width: 300px; height: 200px;">
+                                <figcaption>
+                                    <div class="content">
+                                        <h2>Digital Compliance </h2>
+                                        <p>Delivering technology-driven compliance and reporting systems.</p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </section>
+<!--Projects-->
+
+ 
+<!--leadership-->
+	<style>
+    /* =========================================
+       LEADERSHIP INSIGHTS SECTION
+    ========================================= */
+    .testimonial-style-two {
+        position: relative;
+        padding: 100px 0;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+    }
+
+    /* 1. Dark Overlay for readability */
+    .testimonial-style-two::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.85); /* Darker overlay */
+        z-index: 1;
+    }
+
+    .testimonial-style-two .auto-container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* 2. Section Title */
+    .testimonial-style-two .sec-title h2 {
+        color: #fff;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 50px;
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Orange underline */
+    .testimonial-style-two .sec-title h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: #f57c00;
+        margin: 15px auto 0;
+    }
+
+    /* 3. Testimonial Slide Card */
+    .testimonial-card {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.05); /* Glass Effect */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 50px 40px;
+        border-radius: 15px;
+        transition: transform 0.4s ease;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: #f57c00;
+    }
+
+    /* 4. Quote Icon Styling */
+    .quote-icon {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        font-size: 28px;
+        color: #fff;
+        background: #f57c00;
+        border-radius: 50%;
+        margin: 0 auto 30px;
+        box-shadow: 0 0 20px rgba(245, 124, 0, 0.4);
+    }
+
+    /* 5. Quote Text */
+    .testimonial-text {
+        font-size: 18px;
+        line-height: 1.8;
+        font-style: italic;
+        color: #e0e0e0;
+        margin-bottom: 40px;
+        font-weight: 300;
+    }
+
+    /* 6. Author Details */
+    .author-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .author-thumb {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #f57c00;
+        padding: 3px;
+        background: transparent;
+    }
+
+    .author-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .author-meta h4 {
+        margin: 0;
+        font-size: 22px;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .author-meta .designation {
+        font-size: 14px;
+        color: #f57c00;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 5px;
+    }
+
+    /* 7. Carousel Dots Customization */
+    .testimonial-style-two .owl-dots {
+        margin-top: 40px !important;
+        text-align: center;
+    }
+
+    .testimonial-style-two .owl-dot span {
+        width: 12px;
+        height: 12px;
+        background: rgba(255,255,255,0.3) !important;
+        border-radius: 50%;
+        margin: 0 5px;
+        transition: all 0.3s;
+    }
+
+    .testimonial-style-two .owl-dot.active span {
+        background: #f57c00 !important;
+        transform: scale(1.3);
+    }
+
+    /* Animation Reveal Class */
+    .reveal-item {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+    }
+    
+    .reveal-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<!--Testimonial Style Two Section-->
+<section class="testimonial-style-two reveal-item" style="background-image:url(images/leadership/bg.jpg);">
+    <div class="auto-container">
+        
+        <!--Title-->
+        <div class="sec-title centered light">
+            <h2>Leadership Insights</h2>
+        </div>
+        
+        <!--Carousel Outer-->
+        <div class="carousel-outer">
+            <div class="single-item-carousel owl-theme owl-carousel">
+            
+                <!--Slide 1: Geetha-->
+                <div class="slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+                        
+                        <p class="testimonial-text">
+                            "As Director, my vision is to build a company grounded in integrity, professionalism,
+                            and client trust. We deliver high-quality consulting and compliance solutions that help businesses navigate 
+                            complexity with confidence. Our focus remains on creating sustainable value and long-term success."
+                        </p>
+                        
+                        <div class="author-wrapper">
+                            <figure class="author-thumb">
+                                <img src="images/leadership/geetha.jpg" alt="Geetha S N">
+                            </figure>
+                            <div class="author-meta text-left">
+                                <h4>Geetha S N</h4>
+                                <div class="designation">Director</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--Slide 2: Prashanth-->
+                <div class="slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+                        
+                        <p class="testimonial-text">
+                            "As Founder and Director, my goal is to establish an organization defined by ethical values, 
+                            operational excellence, and strong client relationships. We offer dependable consulting and compliance services 
+                            that bring clarity to complex business requirements."
+                        </p>
+                        
+                        <div class="author-wrapper">
+                            <figure class="author-thumb">
+                                <img src="images/leadership/prashanth.jpg" alt="Prashanth T P">
+                            </figure>
+                            <div class="author-meta text-left">
+                                <h4>Prashanth T P</h4>
+                                <div class="designation">Founder & Director</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--Slide 3: Bhavana-->
+                <div class="slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+                        
+                        <p class="testimonial-text">
+                            "As HR Operations Head, my focus is on creating a people-centric workplace that promotes performance, 
+                            collaboration, and growth. We strengthen HR processes, develop talent, and foster a culture of accountability 
+                            and respect. By aligning people practices with business goals, we support sustainable success."
+                        </p>
+                        
+                        <div class="author-wrapper">
+                            <figure class="author-thumb">
+                                <img src="images/leadership/bhavana.jpg" alt="Bhavana S N">
+                            </figure>
+                            <div class="author-meta text-left">
+                                <h4>Bhavana S N</h4>
+                                <div class="designation">HR Operation Head</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!--Slide 4: Nandeesha-->
+                <div class="slide">
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fa fa-quote-left"></i></div>
+                        
+                        <p class="testimonial-text">
+                            "As an HR Executive, I support employees through clear communication, efficient coordination, 
+                            and well-structured processes. I manage daily HR operations, ensure compliance, and help maintain a positive work 
+                            environment. I contribute to team effectiveness and organizational stability."
+                        </p>
+                        
+                        <div class="author-wrapper">
+                            <figure class="author-thumb">
+                                <img src="images/leadership/nandeesha.jpg" alt="Nandeesha H M">
+                            </figure>
+                            <div class="author-meta text-left">
+                                <h4>Nandeesha H M</h4>
+                                <div class="designation">HR Executive</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>               
+        </div><!--End Carousel Outer-->       
+        
+    </div>
+</section>
+
+<!-- Scroll Animation Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
+});
+</script><!--leadership-->
+
+
+<!--purchase-->
+	<style>
+    /* =========================================
+       PREMIUM CALL TO ACTION STYLES
+    ========================================= */
+    .cta-premium {
+        position: relative;
+        padding: 80px 0;
+        /* Professional Dark Background with Fallback */
+        background: url('images/background/2.jpg') no-repeat center center;
+        background-size: cover;
+        background-attachment: fixed; /* Parallax Effect */
+        overflow: hidden;
+    }
+
+    /* Dark Overlay for Text Readability */
+    .cta-premium::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(10, 10, 10, 0.85); /* Deep Dark Overlay */
+        z-index: 1;
+    }
+
+    .cta-premium .auto-container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Content Layout */
+    .cta-content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    /* Typography Styles */
+    .cta-text h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 10px;
+        line-height: 1.2;
+    }
+
+    .cta-text h2 span {
+        color: #f57c00; /* Theme Orange Accent */
+    }
+
+    .cta-text p {
+        font-size: 18px;
+        color: #d0d0d0; /* Light Gray for subtext */
+        margin: 0;
+        font-weight: 400;
+        max-width: 600px;
+    }
+
+    /* Button Styling - Thematic */
+    .cta-btn-wrapper .btn-style-six {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 15px 45px;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #fff; 
+        background: #f57c00; /* Solid Orange Background */
+        border: 2px solid #f57c00;
+        border-radius: 4px;
+        text-decoration: none !important;
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 20px rgba(245, 124, 0, 0.3);
+    }
+
+    .cta-btn-wrapper .btn-style-six span {
+        margin-left: 10px;
+        transition: transform 0.3s;
+    }
+
+    /* Button Hover: Transparent/White border look */
+    .cta-btn-wrapper .btn-style-six:hover {
+        background: transparent;
+        border-color: #fff;
+        color: #fff;
+    }
+
+    .cta-btn-wrapper .btn-style-six:hover span {
+        transform: translateX(5px);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 991px) {
+        .cta-content-wrapper {
+            flex-direction: column;
+            text-align: center;
+            gap: 30px;
+        }
+        .cta-text p { margin: 0 auto; }
+    }
+
+    /* Animation Entry */
+    .fade-up-enter {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .fade-up-active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<section class="cta-premium">
+    <div class="auto-container fade-up-enter" id="ctaTrigger">
+        <div class="cta-content-wrapper">
+            
+            <!-- Text Content -->
+            <div class="cta-text">
+                <h2>Ready to <span class="type-text">Scale Your Business?</span></h2>
+                <p>Expert consulting for tax, compliance, and growth strategies tailored to your unique vision.</p>
+            </div>
+            
+            <!-- Button -->
+            <div class="cta-btn-wrapper">
+                <a href="contact.php" class="btn-style-six">
+                    Contact Us <span class="fa fa-angle-right"></span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Scroll Animation Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-up-active');
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const cta = document.getElementById('ctaTrigger');
+    if(cta) observer.observe(cta);
+});
+</script><!--purchase-->
+
+
+
+<!--Sponsors -->
+    <style>
+    /* =========================================
+       PARTNERS SECTION STYLING
+    ========================================= */
+    .sponsors-style-two {
+        background-color: #fcfcfc; /* Light Gray Background to separate sections */
+        padding: 90px 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Section Title */
+    .sponsors-style-two .sec-title h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Theme underline */
+    .sponsors-style-two .sec-title h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #f57c00; /* Theme Orange */
+    }
+
+    /* 1. Marquee Container with Faded Edges */
+    .partners-wrapper {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        padding: 40px 0;
+        /* Faded Left & Right Edges */
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    /* 2. Moving Track */
+    .partners-track {
+        display: flex;
+        width: fit-content;
+        gap: 30px; 
+        animation: scrollPartners 40s linear infinite; /* Smooth, slow speed */
+    }
+
+    .partners-track:hover {
+        animation-play-state: paused;
+    }
+
+    /* 3. Partner Logo Card */
+    .partner-item {
+        width: 200px;
+        height: 120px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* Soft shadow instead of border */
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 3px solid transparent;
+    }
+
+    .partner-item a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 4. Image Grayscale Effect */
+    .partner-item img {
+        max-width: 75%;
+        max-height: 75%;
+        object-fit: contain;
+        filter: grayscale(100%); /* B&W by default */
+        opacity: 0.6;
+        transition: all 0.4s ease;
+    }
+
+    /* 5. Hover Effects */
+    .partner-item:hover {
+        transform: translateY(-8px); /* Lift Up */
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        border-bottom-color: #f57c00; /* Orange Accent */
+    }
+
+    .partner-item:hover img {
+        filter: grayscale(0%); /* Full Color */
+        opacity: 1;
+        transform: scale(1.1); /* Slight Zoom */
+    }
+
+    /* Animation Keyframes */
+    @keyframes scrollPartners {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); } 
+    }
+</style>
+
+<section class="sponsors-style-two">
+    <div class="auto-container">
+        <!-- Section Header -->
+        <div class="sec-title">
+            <h2>Our Partners</h2>
+        </div>
+        
+        <div class="partners-wrapper">
+            <div class="partners-track">
+                
+                <!-- === ORIGINAL LOGOS === -->
+                
+                <!-- SIT -->
+                <div class="partner-item" title="SIT">
+                    <a href="#"><img src="images/partners/sit.png" alt="SIT"></a>
+                </div>
+                
+                <!-- Tata -->
+                <div class="partner-item" title="Tata">
+                    <a href="#"><img src="images/partners/tata.png" alt="Tata"></a>
+                </div>
+                
+                <!-- Geetha -->
+                <div class="partner-item" title="Geetha">
+                    <a href="#"><img src="images/partners/geetha.png" alt="Geetha"></a>
+                </div>
+                
+                <!-- Berht -->
+                <div class="partner-item" title="Berht">
+                    <a href="#"><img src="images/partners/berht.png" alt="Berht"></a>
+                </div>
+
+                <!-- Sew -->
+                <div class="partner-item" title="Sew">
+                    <a href="#"><img src="images/partners/sew.png" alt="Sew"></a>
+                </div>
+        
+                <!-- Global -->
+                <div class="partner-item" title="Global">
+                    <a href="#"><img src="images/partners/global.png" alt="Global"></a>
+                </div>
+
+                <!-- JM -->
+                <div class="partner-item" title="JM">
+                    <a href="#"><img src="images/partners/jm.png" alt="JM"></a>
+                </div>
+    
+                <!-- 100 -->
+                <div class="partner-item" title="100">
+                    <a href="#"><img src="images/partners/100.png" alt="100"></a>
+                </div>
+        
+                <!-- Ashu -->
+                <div class="partner-item" title="Ashu">
+                    <a href="#"><img src="images/partners/ashu.png" alt="Ashu"></a>
+                </div>
+        
+                <!-- Salon -->
+                <div class="partner-item" title="Salon">
+                    <a href="#"><img src="images/partners/salon.png" alt="Salon"></a>
+                </div>
+
+
+                <!-- === DUPLICATED LOGOS (For Loop) === -->
+
+                <div class="partner-item"><a href="#"><img src="images/partners/sit.png" alt="SIT"></a></div>
+                <div class="partner-item"><a href="#"><img src="images/partners/tata.png" alt="Tata"></a></div>
+                <div class="partner-item"><a href="#"><img src="images/partners/geetha.png" alt="Geetha"></a></div>
+                <div class="partner-item"><a href="#"><img src="images/partners/berht.png" alt="Berht"></a></div>
+                <div class="partner-item"><a href="#"><img src="images/partners/sew.png" alt="Sew"></a></div>
+                <div class="partner-item"><a href="#"><img src="images/partners/global.png" alt="Global"></a></div>
+                <div class="partner-item"><a href="#"><img src="images/partners/jm.png" alt="JM"></a></div>
+                <div class="partner-item"><a href="#"><img src="images/partners/100.png" alt="100"></a></div>
+                <div class="partner-item"><a href="#"><img src="images/partners/ashu.png" alt="Ashu"></a></div>
+                <div class="partner-item"><a href="#"><img src="images/partners/salon.png" alt="Salon"></a></div>
+
+            </div>
+        </div>
+    </div>
+</section><!--Sponsors -->
+    
+
+
+<!--footer -->
+    <!-- ============================================
+     START OF FOOTER.PHP
+     Location: php_include/footer.php
+============================================= -->
+
+
+<style>
+    /* --- COMPACT FOOTER STYLES --- */
+    
+    /* 1. Main Container Spacing */
+    .main-footer {
+        padding-top: 25px !important;    /* Drastically reduced top space */
+        padding-bottom: 0 !important;    /* Remove bottom padding from main area */
+        background-color: #1a1a1a;
+        color: #b0b0b0;
+    }
+
+    .footer-upper {
+        padding-bottom: 0 !important;    /* Remove spacing between widgets and copyright bar */
+    }
+
+    /* 2. Widget Spacing */
+    .footer-widget {
+        margin-bottom: 20px !important;  /* Reduced space below each column */
+    }
+
+    /* 3. Text & Logo Spacing */
+    .footer-widget .logo-box {
+        margin-bottom: 10px !important;  /* Tighter space below logo */
+    }
+
+    .logo-img {
+        max-width: 160px;                /* Adjusted logo size */
+        height: auto;
+    }
+
+    .footer-widget .text p {
+        margin-bottom: 10px !important;  /* Tighter paragraph spacing */
+        line-height: 1.5em;              /* Slightly tighter line height */
+        font-size: 14px;
+        color: #b0b0b0;
+    }
+
+    /* 4. Right Column Titles & Form */
+    .footer-widget h3 {
+        margin-bottom: 10px !important;  /* Tighter space below "Get in Touch" */
+        margin-top: 5px !important;      /* Align with logo top */
+        font-size: 18px;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .newsletter-form .form-group {
+        margin-bottom: 10px !important;
+        position: relative;
+    }
+
+    .newsletter-form input[type="email"] {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #333;
+        background: #222;
+        color: #fff;
+        border-radius: 4px;
+    }
+
+    .newsletter-form .theme-btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 50px;
+        background: #f57c00;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 0 4px 4px 0;
+    }
+    
+    .social-links {
+        margin-top: 10px !important;     /* Tighter space above icons */
+    }
+
+    .social-links a {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background: #333;
+        color: #fff;
+        text-align: center;
+        margin-right: 5px;
+        border-radius: 50%;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+    .social-links a:hover {
+        background: #f57c00;
+    }
+
+    /* 5. Copyright Bar */
+    .footer-bottom {
+        padding: 10px 0 !important;      /* Very thin copyright bar */
+        margin-top: 10px !important;
+        border-top: 1px solid #2a2a2a;
+        background: #111;
+    }
+    
+    .footer-bottom .copyright-text {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1;
+        text-align: center;
+        font-size: 13px;
+        color: #777;
+    }
+
+    /* --- SUCCESS MESSAGE STYLES --- */
+    #successMessage {
+        display: none;
+        padding-top: 5px;
+    }
+    #successMessage h4 { color: #fff; font-size: 16px; margin: 0 0 5px 0; }
+    #successMessage p { color: #d0d0d0; font-size: 13px; margin: 0; }
+    #successMessage .success-icon { color: #2ecc71; font-size: 20px; margin-bottom: 5px; }
+
+</style>
+
+<footer class="main-footer">
+    
+    <!--Footer Upper-->        
+    <div class="footer-upper">
+        <div class="auto-container">
+            <div class="row clearfix">
+                
+                <!-- Left Column: About -->
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="footer-widget about-widget">
+                        <div class="logo-box">
+                            <!-- Using absolute path /Parishramaa/ ensures it works from any subfolder -->
+                            <a href="/Parishramaa/index.php" class="logo-wrap">
+                                <img src="../../images/header/logo.png" alt="Parishrama Logo" class="logo-img">
+                            </a>
+                        </div>
+                        <div class="text">
+                            <p>We support businesses with reliable consulting and compliance solutions designed to simplify 
+                            regulatory processes. Our commitment is to deliver clarity, confidence, and sustainable growth at every stage.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Newsletter -->
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="row clearfix">
+                        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 column pull-right">
+                            <div class="footer-widget newsletter-widget">
+                                <h3>Get in Touch via Email</h3>
+                                
+                                <div class="newsletter-form">
+                                    
+                                    <!-- Form Container -->
+                                    <div id="formContainer">
+                                        <div class="text">
+                                            <p>Share your email with us, and we will reach out to keep you informed with the 
+                                            latest updates and insights.</p>
+                                        </div>
+                                        
+                                        <form id="emailForm" method="post" action="#">
+                                            <div class="form-group">
+                                                <input type="email" name="useremail" value="" placeholder="Email address" required>
+                                                <button type="submit" class="theme-btn btn-submit"><span class="fa fa-paper-plane"></span></button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- Success Message -->
+                                    <div id="successMessage">
+                                        <span class="fa fa-check-circle success-icon"></span>
+                                        <h4>Thank You for Connecting</h4>
+                                        <p>We acknowledge receipt of your email. The Parishrama team will be in touch shortly.</p>
+                                    </div>
+
+                                    <!-- Social Icons -->
+                                    <div class="social-links">
+                                        <a href="https://www.facebook.com/people/Parishrama-Consulting-Services/100088213360950/"><span class="fa fa-facebook-f"></span></a>
+                                        <a href="https://x.com/Parishramagroup"><span class="fa fa-twitter"></span></a>
+                                        <a href="https://www.linkedin.com/in/parishrama-consulting-services-830b72256/"><span class="fa fa-linkedin"></span></a>
+                                        <a href="https://www.instagram.com/parishramaconsultingservices/"><span class="fa fa-instagram"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!--Footer Bottom-->
+    <div class="footer-bottom">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="copyright-text">© 2025 All Rights Reserved</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</footer>
+
+<!-- JS for Form -->
+<script>
+    if(document.getElementById('emailForm')) {
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        });
+    }
+</script>
+<!--footer -->
+
+
+    
+</div>
+<!--End pagewrapper-->
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+
+
+<script src="js/jquery.js"></script> 
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jQuery.style.switcher.min.js"></script>
+<script src="js/jquery.appear.js"></script> 
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery.fancybox.pack.js"></script>
+<script src="js/jquery.fancybox-media.js"></script>
+<script src="js/owl.js"></script>
+<script src="js/wow.js"></script>
+<script src="js/appear.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/isotope.js"></script>
+
+<!-- revolution slider js -->
+<script src="js/jquery.themepunch.tools.min.js"></script>
+<script src="js/jquery.themepunch.revolution.min.js"></script>
+<script src="js/revolution.extension.actions.min.js"></script>
+<script src="js/revolution.extension.carousel.min.js"></script>
+<script src="js/revolution.extension.kenburn.min.js"></script>
+<script src="js/revolution.extension.layeranimation.min.js"></script>
+<script src="js/revolution.extension.migration.min.js"></script>
+<script src="js/revolution.extension.navigation.min.js"></script>
+<script src="js/revolution.extension.parallax.min.js"></script>
+<script src="js/revolution.extension.slideanims.min.js"></script>
+<script src="js/revolution.extension.video.min.js"></script>
+
+<!-- custom js -->
+<script src="js/script.js"></script>
+
+
+
+</body>
+
+<!-- Mirrored from html.tonatheme.com/2017/Consultant/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 13 Dec 2025 15:39:11 GMT -->
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'sg2plzcpnl509232'},{'dcenter':'sg2'},{'cp_id':'10325206'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script></html>
