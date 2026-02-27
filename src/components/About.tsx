@@ -50,7 +50,7 @@ const About = () => {
               Talent HR Consultancy is a premier consulting firm in India, built on integrity, deep
               industry expertise, and a strong commitment to delivering sustainable business value.
               We enable strategic business transformation through comprehensive HR solutions,
-              talent acquisition, and organizational development.
+              talent acquisition, and organizational development. Our specialized <span className="font-bold text-foreground">payroll</span> services ensure seamless statutory compliance and operational efficiency.
             </p>
 
             {/* Mobile Image */}
