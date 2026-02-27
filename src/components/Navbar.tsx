@@ -210,6 +210,46 @@ const DropdownMenu = ({
   );
 };
 
+const TypewriterText = ({ text }: { text: string }) => {
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && displayText.length < text.length) {
+      // Typing
+      timeout = setTimeout(() => {
+        setDisplayText(text.slice(0, displayText.length + 1));
+      }, 100);
+    } else if (!isDeleting && displayText.length === text.length) {
+      // Pause before deleting
+      timeout = setTimeout(() => setIsDeleting(true), 3000);
+    } else if (isDeleting && displayText.length > 0) {
+      // Deleting
+      timeout = setTimeout(() => {
+        setDisplayText(text.slice(0, displayText.length - 1));
+      }, 50);
+    } else if (isDeleting && displayText.length === 0) {
+      // Pause before typing again
+      timeout = setTimeout(() => setIsDeleting(false), 500);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, text]);
+
+  return (
+    <span>
+      {displayText}
+      <motion.span
+        animate={{ opacity: [1, 0, 1] }}
+        transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+        className="inline-block ml-[2px] font-normal"
+      >|</motion.span>
+    </span>
+  );
+};
+
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -234,31 +274,30 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm"
       ref={navRef}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 py-0">
+      <div className="container mx-auto flex items-center w-full px-4 sm:px-6 py-0">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-1.5 sm:gap-3 py-1 shrink-0">
-          <img src={logoUrl} alt="Talent HR" className="h-10 sm:h-16 md:h-18 lg:h-20 w-auto object-contain" />
-          <div className="flex items-center gap-1.5 sm:gap-3">
-            <div className="flex flex-col justify-center leading-tight">
-              <span className="font-extrabold text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[18px] tracking-tight text-blue-900">
+        <a href="#home" className="flex items-center gap-1 sm:gap-2 py-1 outline-none focus:outline-none shrink-0 overflow-hidden">
+          <img src={logoUrl} alt="Talent HR" className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain shrink-0" />
+          <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+            <div className="flex flex-col justify-center leading-tight truncate">
+              <span className="font-extrabold text-[14px] sm:text-[18px] lg:text-[22px] xl:text-[26px] tracking-tight text-blue-900 truncate">
                 TALENT
               </span>
-              <span className="font-extrabold text-[8px] sm:text-[10px] lg:text-[11px] xl:text-[12px] tracking-widest text-slate-700 mt-[1px]">
+              <span className="font-extrabold text-[9px] sm:text-[11px] lg:text-[13px] xl:text-[15px] tracking-widest text-slate-700 mt-[1px] truncate">
                 HR CONSULTANCY
               </span>
             </div>
-            <div className="block h-5 lg:h-6 w-[1px] sm:w-[1.5px] lg:w-[2px] bg-slate-900 mx-0.5 sm:mx-1 lg:mx-2"></div>
-            <div className="flex items-center gap-1 lg:gap-2 text-slate-900">
-              <span className="font-bold text-[8px] sm:text-[10px] lg:text-[12px] xl:text-[13px] whitespace-nowrap">
-                End to End Services
+            <div className="block h-6 lg:h-8 w-[1px] sm:w-[1.5px] lg:w-[2px] bg-slate-900 mx-1 sm:mx-1.5 lg:mx-2.5"></div>
+            <div className="flex items-center gap-1 lg:gap-2 text-slate-900 w-[140px] sm:w-[170px] lg:w-[200px] xl:w-[230px] ml-1 sm:ml-2">
+              <span className="font-bold text-[9px] sm:text-[11px] lg:text-[13px] xl:text-[15px] whitespace-nowrap text-blue-900">
+                <TypewriterText text="End to End Payroll Services" />
               </span>
-              <div className="hidden lg:block h-4 lg:h-5 w-px bg-slate-300 ml-1"></div>
             </div>
-          </div>
+          </div>a
         </a>
 
         {/* Desktop nav */}
-        <ul className="hidden lg:flex items-center gap-0">
+        <ul className="hidden lg:flex items-center gap-0 ml-auto">
           {navLinks.map((link, index) => (
             <li
               key={link.label}
@@ -289,7 +328,7 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden text-foreground p-2"
+          className="lg:hidden text-foreground p-2 shrink-0 ml-auto mr-1"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}

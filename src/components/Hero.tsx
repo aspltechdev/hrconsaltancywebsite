@@ -1,39 +1,25 @@
 import { motion } from "framer-motion";
-import heroSection from "@/assets/hero_section.png";
+import shivragImageMobile from "@/assets/bg remove.png";
+import shivragImageDesktop from "@/assets/shivraj_image.png";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative w-full min-h-[100svh] md:min-h-screen overflow-hidden">
-      {/* Background Image */}
-      <motion.div
-        initial={{ opacity: 0, scale: 1.02 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="absolute inset-0 z-0"
-      >
-        <img
-          src={heroSection}
-          alt="Professional consultant"
-          className="w-full h-full object-cover object-[80%_center] md:object-center lg:object-top"
-        />
-        {/* Modern Gradient Overlay for readability while keeping the person visible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent md:from-black/40 md:to-transparent" />
-      </motion.div>
-
+    <section id="home" className="relative w-full min-h-[100svh] md:min-h-screen overflow-hidden bg-gradient-to-r from-[#d1ac82] via-[#d1ac82] 50% to-[#ebdcb2] flex flex-col md:block">
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-6 h-full min-h-[100svh] md:min-h-screen flex items-center pt-32 pb-24 lg:pt-32 lg:pb-0">
+      <div className="container relative z-10 mx-auto px-6 h-auto md:h-full flex items-start md:items-center pt-28 pb-10 md:pt-32 md:pb-0 flex-1">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-col max-w-2xl"
+          className="flex flex-col max-w-2xl relative z-20"
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 drop-shadow-lg leading-[1.1]">
-            Provide Best <br />
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-slate-900 mb-6 drop-shadow-sm leading-[1.1]">
+            Providing The Best <br />
             Payroll Consultancy Services
           </h1>
-          <p className="text-lg md:text-xl text-white/95 font-medium max-w-xl mb-10 drop-shadow-md leading-relaxed">
-            Empowering businesses with smart HR solutions. Talent HR Consultancy offers end-to-end services including payroll, compliance, recruitment (white & blue collar), accounts & finance, and statutory documentation. We simplify HR processes so you can focus on growing your business with confidence.          </p>
+          <p className="text-base md:text-lg text-slate-800 font-semibold max-w-xl mb-10 drop-shadow-sm leading-relaxed">
+            Empowering businesses with smart HR solutions. Talent HR Consultancy offers end-to-end  payroll services including compliance, recruitment (white & blue collar), accounts & finance, and statutory documentation. We simplify HR processes so you can focus on growing your business with confidence.
+          </p>
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
@@ -48,7 +34,31 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Decorative vertical lines or scroll indicator can be added here if needed */}
+      {/* Background Image / Person at bottom on Mobile */}
+      <motion.div
+        initial={{ opacity: 0, scale: 1.02 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="relative md:absolute inset-x-0 bottom-0 md:top-0 md:bottom-0 z-0 bg-transparent md:pt-0 shrink-0"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+          className="relative md:absolute md:bottom-0 md:right-0 w-full md:w-1/2 lg:w-[45%] h-[35vh] sm:h-[45vh] md:h-[95%] lg:h-full z-[1] flex justify-center items-end md:block"
+        >
+          <img
+            src={shivragImageMobile}
+            alt="Professional consultant"
+            className="w-full h-full object-contain object-bottom md:hidden scale-110"
+          />
+          <img
+            src={shivragImageDesktop}
+            alt="Professional consultant"
+            className="hidden md:block w-full h-full object-cover object-left-top desktop-mask origin-center"
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

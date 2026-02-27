@@ -121,4 +121,9 @@
   .shadow-gold {
     box-shadow: 0 4px 30px -8px hsl(197, 95%, 55%, 0.3);
   }
+
+  .desktop-mask {
+    mask-image: linear-gradient(to right, transparent 0%, black 30%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  }
 }

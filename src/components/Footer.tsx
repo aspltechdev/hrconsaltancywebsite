@@ -34,13 +34,27 @@ const Footer = () => {
           <div className="col-span-1">
             <h4 className="font-semibold mb-3 text-gold text-sm uppercase tracking-wider">Services</h4>
             <ul className="space-y-1.5 text-sm text-primary-foreground">
-              <li className="hover:text-gold transition-colors cursor-pointer">Compliance</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">Registration</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">Start up</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">GST</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">Income Tax</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">MCA & Compliance</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">Trademark</li>
+              {[
+                "Compliance",
+                "Registration",
+                "Start up",
+                "GST",
+                "Income Tax",
+                "MCA & Compliance",
+                "Trademark",
+              ].map((service) => (
+                <li
+                  key={service}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.dispatchEvent(new CustomEvent("openServiceModal", { detail: service }));
+                    document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                  className="hover:text-gold transition-colors cursor-pointer"
+                >
+                  {service}
+                </li>
+              ))}
             </ul>
           </div>
 

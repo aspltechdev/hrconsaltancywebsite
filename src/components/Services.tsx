@@ -68,7 +68,7 @@ const Services = () => {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://formspree.io/f/xbdaqqpy", {
+      const response = await fetch("https://formspree.io/f/mojnbjnv", {
         method: "POST",
         body: formData,
         headers: { Accept: "application/json" },
