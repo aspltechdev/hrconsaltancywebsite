@@ -293,7 +293,7 @@ const Navbar = () => {
                 <TypewriterText text="End to End Payroll Services" />
               </span>
             </div>
-          </div>a
+          </div>
         </a>
 
         {/* Desktop nav */}
