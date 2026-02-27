@@ -105,7 +105,7 @@ const Contact = () => {
           >
             {[
               { icon: Phone, label: "Phone", value: "+91 8431094143", href: "tel:+91 8431094143" },
-              { icon: Mail, label: "Email", value: "info@talenthr.com", href: "mailto:info@talenthr.com" },
+              { icon: Mail, label: "Email", value: "info@talenthrconsultancy.com", href: "mailto:info@talenthrconsultancy.com" },
               { icon: MapPin, label: "Address", value: "Shop No 2 Nagamuneshwara Layout Parappana Agrahara, post, Hosa Road, Electronic City, Bengaluru, Karnataka 560100", href: "#" },
             ].map((item, i) => (
               <a key={i} href={item.href} className="flex items-start gap-4 group">

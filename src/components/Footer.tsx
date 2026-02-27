@@ -72,7 +72,7 @@ const Footer = () => {
                 <div className="bg-gold/10 p-2 rounded-lg shrink-0 group-hover:bg-gold/20 transition-colors">
                   <Mail size={18} className="text-gold" />
                 </div>
-                <a href="mailto:info@talenthr.com" className="hover:text-gold transition-colors">info@talenthr.com</a>
+                <a href="mailto:info@talenthrconsultancy.com" className="hover:text-gold transition-colors">info@talenthrconsultancy.com</a>
               </li>
               <li className="flex items-start gap-3 text-primary-foreground group">
                 <div className="bg-gold/10 p-2 rounded-lg shrink-0 mt-0.5 group-hover:bg-gold/20 transition-colors">
